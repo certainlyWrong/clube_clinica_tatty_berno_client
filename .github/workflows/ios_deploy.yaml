@@ -18,9 +18,14 @@ jobs:
       id: flutter
 
     - name: Setup fastlane
-      uses: fastlane/setup-fastlane@v3
+      uses: ruby/setup-ruby@v1
       with:
-        version: '2.222.0'
+        ruby-version: "3.3"
+        bundler-cache: true
+        working-directory: ios
+
+    - name: Install fastlane
+      run: gem install fastlane
     
     - name: Fastlane version
       run: fastlane --version
