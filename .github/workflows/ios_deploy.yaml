@@ -1,7 +1,10 @@
 name: "Ios Deploy"
 on:
   workflow_dispatch:
-    
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   deploy:
     runs-on: macos-latest
