@@ -5,47 +5,47 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000233">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000511">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: is_ci" time="0.000125">
+      <testcase classname="fastlane.lanes" name="1: is_ci" time="0.000106">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: match" time="5.462306">
+      <testcase classname="fastlane.lanes" name="2: match" time="6.670734">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: fastlane deliver download_metadata -f" time="10.235772">
+      <testcase classname="fastlane.lanes" name="3: fastlane deliver download_metadata -f" time="9.164711">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: fastlane deliver download_screenshots -f" time="5.702194">
+      <testcase classname="fastlane.lanes" name="4: fastlane deliver download_screenshots -f" time="5.229992">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: echo New features and bug fixes &gt; metadata/pt-BR/release_notes.txt" time="0.007564">
+      <testcase classname="fastlane.lanes" name="5: echo New features and bug fixes &gt; metadata/pt-BR/release_notes.txt" time="0.012633">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: flutter build ios --release --no-codesign" time="18.543406">
+      <testcase classname="fastlane.lanes" name="6: flutter build ios --release --no-codesign" time="80.381589">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: build_app" time="115.31609">
+      <testcase classname="fastlane.lanes" name="7: build_app" time="148.910745">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: deliver" time="321.439607">
+      <testcase classname="fastlane.lanes" name="8: deliver" time="283.481384">
         
       </testcase>
     
