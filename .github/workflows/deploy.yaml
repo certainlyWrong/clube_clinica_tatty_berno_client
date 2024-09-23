@@ -71,7 +71,10 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
+    - name: cd android
+      run: cd android & ls
+
     - name: Deploy to internal Play Store
-      run: cd android & fastlane release
+      run: cd android && fastlane beta
 
 
