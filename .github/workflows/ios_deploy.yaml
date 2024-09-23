@@ -4,8 +4,7 @@ on:
 
 jobs:
   deploy:
-    # runs-on: macos-latest
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -14,33 +13,29 @@ jobs:
       run: |
         git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
 
+    - name: Setup flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.24.3'
+        channel: 'stable'
+        cache: true
+      id: flutter
 
-    - name: Git clone
-      run: git clone https://github.com/certainlyWrong/looplus_core.git
+    - name: Setup fastlane
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: "3.3"
+        bundler-cache: true
+        working-directory: ios
 
-    # - name: Setup flutter
-    #   uses: subosito/flutter-action@v2
-    #   with:
-    #     flutter-version: '3.24.3'
-    #     channel: 'stable'
-    #     cache: true
-    #   id: flutter
-
-    # - name: Setup fastlane
-    #   uses: ruby/setup-ruby@v1
-    #   with:
-    #     ruby-version: "3.3"
-    #     bundler-cache: true
-    #     working-directory: ios
-
-    # - name: Install fastlane
-    #   run: gem install fastlane
+    - name: Install fastlane
+      run: gem install fastlane
     
-    # - name: Fastlane version
-    #   run: fastlane --version
+    - name: Fastlane version
+      run: fastlane --version
 
-    # - name: Install dependencies
-    #   run: flutter pub get
+    - name: Install dependencies
+      run: flutter pub get
 
     
 
