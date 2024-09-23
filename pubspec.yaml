@@ -1,7 +1,7 @@
 name: loop_client
 description: "A new Flutter project."
 
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.2.106+66
 
@@ -15,10 +15,9 @@ dependencies:
   cupertino_icons: ^1.0.8
 
   looplus_core:
-    path: ../looplus_core
-    # git:
-    #   url: https://github.com/certainlyWrong/looplus_core.git
-    #   ref: dev
+    git:
+      url: https://github.com/certainlyWrong/looplus_core.git
+      ref: dev
 
 dev_dependencies:
   flutter_test:
@@ -32,9 +31,7 @@ dev_dependencies:
   patrol: ^3.11.0
 
 flutter:
-
   uses-material-design: true
-
 
 flutter_launcher_icons:
   android: "launcher_icon"
