@@ -45,4 +45,33 @@ jobs:
 
     - name: Setup git
       run: |
-        git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf " 
+        git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
+    
+    - name: Setup flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.24.3'
+        channel: 'stable'
+        cache: true
+      id: flutter
+
+    - name: Setup fastlane
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: "3.3"
+        bundler-cache: true
+        working-directory: ios
+
+    - name: Install fastlane
+      run: gem install fastlane
+    
+    - name: Fastlane version
+      run: fastlane --version
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Deploy to internal Play Store
+      run: cd android & fastlane release
+
+
