@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  ios_deploy:
     runs-on: macos-latest
     steps:
     - name: Checkout repository
@@ -37,5 +37,12 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
-    
+  android_deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
+    - name: Setup git
+      run: |
+        git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf " 
