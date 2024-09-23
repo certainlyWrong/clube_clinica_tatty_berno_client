@@ -2,9 +2,6 @@ name: "Ios Deploy"
 on:
   workflow_dispatch:
 
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
   deploy:
     # runs-on: macos-latest
@@ -13,9 +10,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Clonar repositório privado no job1
+    - name: Setup git
       run: |
-        git config --global url."https://${{ env.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
+        git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
+
 
     - name: Git clone
       run: git clone https://github.com/certainlyWrong/looplus_core.git
