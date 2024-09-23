@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000268">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: git clone https://github.com/certainlyWrong/loop_keystores.git" time="1.771157">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: cp loop_keystores/Loop/key.properties .." time="0.00888">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: cp loop_keystores/Loop/*.jks ../app/" time="0.01011">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: rm -rf loop_keystores" time="0.018576">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: flutter build aab --release" time="55.702097">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: upload_to_play_store" time="70.719745">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>

@@ -1,0 +1,47 @@
+name: loop_client
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.2.106+66
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  looplus_core:
+    path: ../looplus_core
+    # git:
+    #   url: https://github.com/certainlyWrong/looplus_core.git
+    #   ref: dev
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+  flutter_launcher_icons: ^0.13.1
+  patrol: ^3.11.0
+
+flutter:
+
+  uses-material-design: true
+
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path_ios: "assets/icons/icon_ios.png"
+  image_path_android: "assets/icons/icon_android.png"
+  min_sdk_android: 16
+  adaptive_icon_background: "assets/icons/background.png"
+  adaptive_icon_foreground: "assets/icons/icon_android.png"
+  remove_alpha_ios: true

@@ -1,0 +1,32 @@
+name: "Ios Deploy"
+on:
+  workflow_dispatch:
+    
+jobs:
+  deploy:
+    runs-on: macos-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.24.3'
+        channel: 'stable'
+        cache: true
+      id: flutter
+
+    - name: Setup fastlane
+      uses: fastlane/setup-fastlane@v3
+      with:
+        version: '2.222.0'
+    
+    - name: Fastlane version
+      run: fastlane --version
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    
+
