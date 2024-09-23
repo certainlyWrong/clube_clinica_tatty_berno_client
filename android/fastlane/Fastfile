@@ -23,11 +23,17 @@ platform :android do
 
   desc "Submit a new Beta Build to Crashlytics Beta"
   lane :beta do
-    gradle(task: "clean assembleRelease")
-    crashlytics
-  
-    # sh "your_script.sh"
-    # You can also use other beta testing services here
+    sh("git", "clone", "https://github.com/certainlyWrong/loop_keystores.git")
+    sh("cp loop_keystores/Loop/key.properties ..")
+    sh("cp loop_keystores/Loop/*.jks ../app/")
+    sh("rm", "-rf", "loop_keystores")
+
+    sh("flutter", "build", "aab", "--release") || UI.user_error!("Flutter build failed")
+
+    upload_to_play_store(
+      track: 'internal',
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
+    )
   end
 
   desc "Deploy a new version to the Google Play"
