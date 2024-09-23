@@ -70,7 +70,6 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '22'
-        cache: 'maven'
 
     - name: Install dependencies
       run: flutter pub get
