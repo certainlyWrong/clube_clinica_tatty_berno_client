@@ -2,12 +2,14 @@ name: "Loop Deploy"
 on:
   workflow_dispatch:
 
+env:
+  MATCH_PASSWORD: ${{ vars.MATCH_PASSWORD }}
+  MATCH_KEYCHAIN_PASSWORD: ${{ vars.MATCH_KEYCHAIN_PASSWORD }}
+  FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ vars.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+
 jobs:
   ios_deploy:
     runs-on: macos-latest
-
-    env:
-      MATCH_PASSWORD: ${{ env.MATCH_PASSWORD }}
 
     steps:
     - name: Checkout repository
