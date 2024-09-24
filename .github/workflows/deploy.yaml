@@ -1,4 +1,4 @@
-name: "Ios Deploy"
+name: "Loop Deploy"
 on:
   workflow_dispatch:
 
@@ -74,12 +74,17 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
-
     - name: Get fastlane_tools
       run: git clone https://github.com/certainlyWrong/fastlane_tools.git
 
+    - name: ls
+      run: ls
+
     - name: Run fastlane_tools
       run: cd fastlane_tools && chmod +x run.sh && ./run.sh
+
+    - name: ls
+      run: ls
 
     - name: Deploy to internal Play Store
       run: cd android && fastlane beta
