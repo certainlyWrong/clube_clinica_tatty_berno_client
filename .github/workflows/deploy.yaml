@@ -34,9 +34,6 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
-    - name: Setup fastlane environment
-      run: cd ios/fastlane && echo "MATCH_PASSWORD=${{ secrets.MATCH_PASSWORD }}\nFASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD=${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}" > .env
-
     - name: ls fastlane
       run: cd ios/fastlane && ls -la
 
