@@ -37,9 +37,6 @@ jobs:
     - name: ls fastlane
       run: cd ios/fastlane && ls -la
 
-    - name: Cat fastlane
-      run: cd ios/fastlane && cat .env
-
     - name: Fastlane match appstore
       run: cd ios && fastlane match appstore
 
