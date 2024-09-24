@@ -38,10 +38,13 @@ jobs:
       run: cd ios/fastlane && echo "MATCH_PASSWORD=${{ secrets.MATCH_PASSWORD }}\nFASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD=${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}" > .env
 
     - name: ls fastlane
-      run: cd ios/fastlane && ls
+      run: cd ios/fastlane && ls -la
 
     - name: Cat fastlane
       run: cd ios/fastlane && cat .env
+
+    - name: Fastlane match appstore
+      run: cd ios && fastlane match appstore
 
     - name: Deploy to internal TestFlight
       run: cd ios && fastlane beta
