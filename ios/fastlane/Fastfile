@@ -24,10 +24,10 @@ platform :ios do
     
     build_app(workspace: "Runner.xcworkspace", export_method: "app-store")
     
-    pilot(
-      ipa: "Runner.ipa",
-      skip_waiting_for_build_processing: true,
-    )
+    # pilot(
+    #   ipa: "Runner.ipa",
+    #   skip_waiting_for_build_processing: true,
+    # )
   end
 
   desc "Push a new release build to the App Store"
