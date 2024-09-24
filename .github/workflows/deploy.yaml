@@ -5,6 +5,10 @@ on:
 jobs:
   ios_deploy:
     runs-on: macos-latest
+
+    env:
+      MATCH_PASSWORD: ${{ env.MATCH_PASSWORD }}
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
