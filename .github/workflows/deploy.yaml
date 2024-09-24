@@ -30,12 +30,12 @@ jobs:
 
     - name: Install fastlane
       run: gem install fastlane
-    
-    - name: Fastlane version
-      run: fastlane --version
 
     - name: Install dependencies
       run: flutter pub get
+
+    - name: Deploy to internal TestFlight
+      run: cd ios && fastlane beta
 
   android_deploy:
     runs-on: ubuntu-latest
@@ -77,14 +77,8 @@ jobs:
     - name: Get fastlane_tools
       run: git clone https://github.com/certainlyWrong/fastlane_tools.git
 
-    - name: ls
-      run: ls
-
     - name: Run fastlane_tools
       run: cp fastlane_tools/fastlane_cicd.json android/
-
-    - name: ls
-      run: ls android
 
     - name: Deploy to internal Play Store
       run: cd android && fastlane beta
