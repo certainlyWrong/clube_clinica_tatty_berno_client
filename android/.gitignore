@@ -1,3 +1,5 @@
+*.json
+
 metadata
 report.xml
 loop_keystores
