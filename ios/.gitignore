@@ -1,3 +1,5 @@
+*.html
+*.xml
 metadata
 screenshots
 .env
