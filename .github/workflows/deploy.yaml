@@ -81,10 +81,10 @@ jobs:
       run: ls
 
     - name: Run fastlane_tools
-      run: cd fastlane_tools && chmod +x run.sh && ./run.sh
+      run: cp fastlane_tools/fastlane_cicd.json android/
 
     - name: ls
-      run: ls
+      run: ls android
 
     - name: Deploy to internal Play Store
       run: cd android && fastlane beta
