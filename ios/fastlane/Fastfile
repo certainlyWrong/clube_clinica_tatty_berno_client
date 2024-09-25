@@ -23,12 +23,12 @@ platform :ios do
       readonly: true,
       keychain_name: "login.keychain-db",
       keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
-      clone_branch_directly: true  ,
+      clone_branch_directly: true,
     )
 
-    # Dir.chdir "../.." do sh("flutter", "build", "ios", "--release", "--no-codesign") end # Call Flutter Build
+    Dir.chdir "../.." do sh("flutter", "build", "ios", "--release", "--no-codesign") end # Call Flutter Build
     
-    build_app(workspace: "Runner.xcworkspace")
+    build_app(workspace: "Runner.xcworkspace", export_method: "app-store")
     
     # pilot(
     #   ipa: "Runner.ipa",
