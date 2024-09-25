@@ -51,46 +51,46 @@ jobs:
     - name: Deploy to internal TestFlight
       run: cd ios && fastlane beta
 
-  # android_deploy:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Checkout repository
-  #     uses: actions/checkout@v3
+  android_deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-  #   - name: Setup git
-  #     run: |
-  #       git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
+    - name: Setup git
+      run: |
+        git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
     
-  #   - name: Setup flutter
-  #     uses: subosito/flutter-action@v2
-  #     with:
-  #       flutter-version: '3.24.3'
-  #       channel: 'stable'
-  #       cache: true
-  #     id: flutter
+    - name: Setup flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.24.3'
+        channel: 'stable'
+        cache: true
+      id: flutter
 
-  #   - name: Setup fastlane
-  #     uses: ruby/setup-ruby@v1
-  #     with:
-  #       ruby-version: "3.3"
-  #       bundler-cache: true
-  #       working-directory: ios
+    - name: Setup fastlane
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: "3.3"
+        bundler-cache: true
+        working-directory: ios
 
-  #   - name: Install fastlane
-  #     run: gem install fastlane
+    - name: Install fastlane
+      run: gem install fastlane
 
-  #   - name: Setup Java 22
-  #     uses: actions/setup-java@v3
-  #     with:
-  #       distribution: 'temurin'
-  #       java-version: '22'
+    - name: Setup Java 22
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '22'
 
-  #   - name: Install dependencies
-  #     run: flutter pub get
+    - name: Install dependencies
+      run: flutter pub get
 
-  #   - name: Set fastlane_cicd
-  #     run: echo "${{ secrets.FASTLANE_ANDROID_CICD }}" >> ./android/fastlane_cicd.json
+    - name: Set fastlane_cicd
+      run: echo "${{ secrets.FASTLANE_ANDROID_CICD }}" >> ./android/fastlane_cicd.json
 
-  #   - name: Deploy to internal Play Store
-  #     run: cd android && fastlane beta
+    - name: Deploy to internal Play Store
+      run: cd android && fastlane beta
 

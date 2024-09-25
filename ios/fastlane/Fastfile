@@ -33,11 +33,11 @@ platform :ios do
 
     sh("security find-identity -v -p codesigning /Users/runner/Library/Keychains/login.keychain-db")
 
-    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
+    # build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
 
     pilot(
       ipa: "Runner.ipa",
-      api_key_path: "../store.json",
+      api_key_path: "store.json",
       skip_waiting_for_build_processing: true,
     )
   end
