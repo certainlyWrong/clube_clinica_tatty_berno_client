@@ -46,7 +46,7 @@ jobs:
       run: flutter pub get
 
     - name: Set fastlane_cicd
-      run: echo "${{ secrets.FASTLANE_IOS_CICD }}" >> /ios/store.json
+      run: echo "${{ secrets.FASTLANE_IOS_CICD }}" >> ./ios/store.json
 
     - name: Deploy to internal TestFlight
       run: cd ios && fastlane beta
@@ -89,7 +89,7 @@ jobs:
       run: flutter pub get
 
     - name: Set fastlane_cicd
-      run: echo "${{ secrets.FASTLANE_ANDROID_CICD }}" >> /android/fastlane_cicd.json
+      run: echo "${{ secrets.FASTLANE_ANDROID_CICD }}" >> ./android/fastlane_cicd.json
 
     - name: Deploy to internal Play Store
       run: cd android && fastlane beta
