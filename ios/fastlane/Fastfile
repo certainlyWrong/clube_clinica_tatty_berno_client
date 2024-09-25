@@ -42,44 +42,44 @@ platform :ios do
     )
   end
 
-  # desc "Push a new release build to the App Store"
-  # lane :release do
-  #   setup_ci if ENV['CI']
+  desc "Push a new release build to the App Store"
+  lane :release do
+    setup_ci if ENV['CI']
 
-  #   match(
-  #     type: "appstore",
-  #     readonly: setup_ci,
-  #     clone_branch_directly: true,
-  #   )
+    match(
+      type: "appstore",
+      readonly: setup_ci,
+      clone_branch_directly: true,
+    )
 
-  #   sh("fastlane", "deliver", "download_metadata", "-f") || UI.user_error!("Flutter build failed")
-  #   sh("fastlane", "deliver", "download_screenshots", "-f") || UI.user_error!("Flutter build failed")
+    sh("fastlane", "deliver", "download_metadata", "-f") || UI.user_error!("Flutter build failed")
+    sh("fastlane", "deliver", "download_screenshots", "-f") || UI.user_error!("Flutter build failed")
 
-  #   sh("echo New features and bug fixes > metadata/pt-BR/release_notes.txt") || UI.user_error!("Flutter build failed")
+    sh("echo New features and bug fixes > metadata/pt-BR/release_notes.txt") || UI.user_error!("Flutter build failed")
     
-  #   sh("pod install") || UI.user_error!("Flutter build failed")
+    sh("pod install") || UI.user_error!("Flutter build failed")
         
-  #   build_app(workspace: "Runner.xcworkspace", export_method: "app-store")
+    build_app(workspace: "Runner.xcworkspace", export_method: "app-store")
     
-  #   deliver(
-  #     ipa: "Runner.ipa",
-  #     force: true,
-  #     automatic_release: true,
-  #     skip_screenshots: true,
-  #     submit_for_review: true,
-  #     version_check_wait_retry_limit: 15,
-  #     submission_information: {
-  #       add_id_info_uses_idfa: false,
-  #       export_compliance_platform: 'ios',  # iOS como plataforma
-  #       export_compliance_uses_encryption: false,  # Definir como true se o app usar criptografia
-  #       export_compliance_is_exempt: false,  # Defina como false se não houver isenção automática de conformidade
-  #       export_compliance_contains_third_party_cryptography: false,  # Se você usa bibliotecas de criptografia de terceiros
-  #       export_compliance_contains_proprietary_cryptography: false,  # Defina como true se você usa criptografia proprietária
-  #       export_compliance_compliance_required: true,  # Apple precisará revisar essa conformidade
-  #       export_compliance_encryption_updated: false,  # Defina como true se a criptografia foi atualizada
-  #       export_compliance_app_type: 'public',  # Tipo de app (público, por exemplo)
-  #       export_compliance_available_on_french_store: true  # Se está disponível na loja francesa
-  #     }
-  #   )
-  # end
+    deliver(
+      ipa: "Runner.ipa",
+      force: true,
+      automatic_release: true,
+      skip_screenshots: true,
+      submit_for_review: true,
+      version_check_wait_retry_limit: 15,
+      submission_information: {
+        add_id_info_uses_idfa: false,
+        export_compliance_platform: 'ios',  # iOS como plataforma
+        export_compliance_uses_encryption: false,  # Definir como true se o app usar criptografia
+        export_compliance_is_exempt: false,  # Defina como false se não houver isenção automática de conformidade
+        export_compliance_contains_third_party_cryptography: false,  # Se você usa bibliotecas de criptografia de terceiros
+        export_compliance_contains_proprietary_cryptography: false,  # Defina como true se você usa criptografia proprietária
+        export_compliance_compliance_required: true,  # Apple precisará revisar essa conformidade
+        export_compliance_encryption_updated: false,  # Defina como true se a criptografia foi atualizada
+        export_compliance_app_type: 'public',  # Tipo de app (público, por exemplo)
+        export_compliance_available_on_french_store: true  # Se está disponível na loja francesa
+      }
+    )
+  end
 end
