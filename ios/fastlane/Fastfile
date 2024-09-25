@@ -18,11 +18,14 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new testflight build to the TestFlight"
   lane :beta do
+    # Essa flag é usada para determinar se o script está sendo executado em um ambiente de CI
+    # Se essa flag não for definida a Running script executará infinitamente, provavelmente 
+    # por causa de um erro de permissão
     setup_ci if ENV['CI']
 
     match(
       type: "appstore",
-      readonly: true,
+      readonly: setup_ci,
       clone_branch_directly: true,
     )
 
@@ -30,29 +33,31 @@ platform :ios do
 
     sh("security find-identity -v -p codesigning /Users/runner/Library/Keychains/login.keychain-db")
 
-    # Dir.chdir "../.." do sh("flutter", "build", "ios", "--release", "--no-codesign") end # Call Flutter Build
-    
     build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
 
-    # pilot(
-    #   ipa: "Runner.ipa",
-    #   skip_waiting_for_build_processing: true,
-    # )
+    pilot(
+      ipa: "Runner.ipa",
+      skip_waiting_for_build_processing: true,
+    )
   end
 
   desc "Push a new release build to the App Store"
   lane :release do
-    match(type: "appstore", readonly: is_ci)
+    setup_ci if ENV['CI']
+
+    match(
+      type: "appstore",
+      readonly: setup_ci,
+      clone_branch_directly: true,
+    )
 
     sh("fastlane", "deliver", "download_metadata", "-f") || UI.user_error!("Flutter build failed")
     sh("fastlane", "deliver", "download_screenshots", "-f") || UI.user_error!("Flutter build failed")
 
     sh("echo New features and bug fixes > metadata/pt-BR/release_notes.txt") || UI.user_error!("Flutter build failed")
     
-    Dir.chdir "../.." do
-      sh("flutter", "build", "ios", "--release", "--no-codesign") || UI.user_error!("Flutter build failed")
-    end
-    
+    sh("pod install") || UI.user_error!("Flutter build failed")
+        
     build_app(workspace: "Runner.xcworkspace", export_method: "app-store")
     
     deliver(
