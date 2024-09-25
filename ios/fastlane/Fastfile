@@ -21,7 +21,9 @@ platform :ios do
     match(
       type: "appstore",
       readonly: true,
-      clone_branch_directly: true  
+      keychain_name: "login.keychain-db",
+      keychain_password: ENV["KEYCHAIN_PASSWORD"]
+      clone_branch_directly: true  ,
     )
 
     # Dir.chdir "../.." do sh("flutter", "build", "ios", "--release", "--no-codesign") end # Call Flutter Build
