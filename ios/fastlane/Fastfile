@@ -28,10 +28,10 @@ platform :ios do
 
     sh("security find-identity -v -p codesigning /Users/runner/Library/Keychains/login.keychain-db")
 
-    Dir.chdir "../.." do sh("flutter", "build", "ios", "--release", "--no-codesign") end # Call Flutter Build
+    # Dir.chdir "../.." do sh("flutter", "build", "ios", "--release", "--no-codesign") end # Call Flutter Build
     
-    build_app(workspace: "Runner.xcworkspace", export_method: "app-store")
-    
+    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
+
     # pilot(
     #   ipa: "Runner.ipa",
     #   skip_waiting_for_build_processing: true,
