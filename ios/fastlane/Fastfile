@@ -28,7 +28,7 @@ platform :ios do
 
     # Dir.chdir "../.." do sh("flutter", "build", "ios", "--release", "--no-codesign") end # Call Flutter Build
     
-    build_app(workspace: "Runner.xcworkspace", shceme: "Runner")
+    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
     
     # pilot(
     #   ipa: "Runner.ipa",
