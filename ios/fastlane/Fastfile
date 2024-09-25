@@ -26,6 +26,8 @@ platform :ios do
       clone_branch_directly: true,
     )
 
+    sh("pod install") || UI.user_error!("Flutter build failed")
+
     sh("security find-identity -v -p codesigning /Users/runner/Library/Keychains/login.keychain-db")
 
     # Dir.chdir "../.." do sh("flutter", "build", "ios", "--release", "--no-codesign") end # Call Flutter Build
