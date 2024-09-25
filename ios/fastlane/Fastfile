@@ -22,7 +22,7 @@ platform :ios do
       type: "appstore",
       readonly: true,
       keychain_name: "login.keychain-db",
-      keychain_password: ENV["KEYCHAIN_PASSWORD"]
+      keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"]
       clone_branch_directly: true  ,
     )
 
