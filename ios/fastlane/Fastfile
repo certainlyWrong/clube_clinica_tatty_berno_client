@@ -37,7 +37,7 @@ platform :ios do
 
     pilot(
       ipa: "Runner.ipa",
-      api_key_path: "store.json",
+      api_key_path: "../store.json",
       skip_waiting_for_build_processing: true,
     )
   end
