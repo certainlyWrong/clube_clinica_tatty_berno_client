@@ -29,9 +29,9 @@ platform :ios do
       clone_branch_directly: true,
     )
 
-    sh("pod install") || UI.user_error!("Flutter build failed")
-
     sh("security find-identity -v -p codesigning /Users/runner/Library/Keychains/login.keychain-db")
+
+    sh("flutter", "build", "ios", "--release", "--no-codesign") || UI.user_error!("Flutter build failed")
 
     build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
 
@@ -57,13 +57,13 @@ platform :ios do
 
     sh("echo New features and bug fixes > metadata/pt-BR/release_notes.txt") || UI.user_error!("Flutter build failed")
     
-    sh("pod install") || UI.user_error!("Flutter build failed")
-        
+    sh("flutter", "build", "ios", "--release", "--no-codesign") || UI.user_error!("Flutter build failed")
+
     build_app(workspace: "Runner.xcworkspace", export_method: "app-store")
-    
+
     deliver(
       ipa: "Runner.ipa",
-      api_key_path: "store.json",
+      # api_key_path: "store.json",
       force: true,
       automatic_release: true,
       skip_screenshots: true,
@@ -76,10 +76,10 @@ platform :ios do
         export_compliance_is_exempt: false,  # Defina como false se não houver isenção automática de conformidade
         export_compliance_contains_third_party_cryptography: false,  # Se você usa bibliotecas de criptografia de terceiros
         export_compliance_contains_proprietary_cryptography: false,  # Defina como true se você usa criptografia proprietária
-        export_compliance_compliance_required: true,  # Apple precisará revisar essa conformidade
+        export_compliance_compliance_required: false,  # Apple precisará revisar essa conformidade
         export_compliance_encryption_updated: false,  # Defina como true se a criptografia foi atualizada
         export_compliance_app_type: 'public',  # Tipo de app (público, por exemplo)
-        export_compliance_available_on_french_store: true  # Se está disponível na loja francesa
+        export_compliance_available_on_french_store: false  # Se está disponível na loja francesa
       }
     )
   end
