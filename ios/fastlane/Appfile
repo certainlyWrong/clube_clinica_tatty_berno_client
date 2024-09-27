@@ -1,4 +1,4 @@
-app_identifier("br.com.loopmais") # The bundle identifier of your app
+app_identifier("br.com.clinicatatty") # The bundle identifier of your app
 apple_id("adrianorodesousa@gmail.com") # Your Apple Developer Portal username
 
 itc_team_id("125382137") # App Store Connect Team ID

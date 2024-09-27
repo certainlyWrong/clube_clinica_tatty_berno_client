@@ -24,8 +24,8 @@ platform :android do
   desc "Submit a new Beta Build to Crashlytics Beta"
   lane :beta do
     sh("git", "clone", "https://github.com/certainlyWrong/loop_keystores.git")
-    sh("cp loop_keystores/Loop/key.properties ..")
-    sh("cp loop_keystores/Loop/*.jks ../app/")
+    sh("cp loop_keystores/Clube_Clinica_Tatty_Berno/key.properties ..")
+    sh("cp loop_keystores/Clube_Clinica_Tatty_Berno/*.jks ../app/")
     sh("rm", "-rf", "loop_keystores")
 
     sh("flutter", "build", "aab", "--release") || UI.user_error!("Flutter build failed")
