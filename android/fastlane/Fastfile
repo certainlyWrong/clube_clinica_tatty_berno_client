@@ -39,8 +39,8 @@ platform :android do
   desc "Deploy a new version to the Google Play"
   lane :release do
     sh("git", "clone", "https://github.com/certainlyWrong/loop_keystores.git")
-    sh("cp loop_keystores/Loop/key.properties ..")
-    sh("cp loop_keystores/Loop/*.jks ../app/")
+    sh("cp loop_keystores/Clube_Clinica_Tatty_Berno/key.properties ..")
+    sh("cp loop_keystores/Clube_Clinica_Tatty_Berno/*.jks ../app/")
     sh("rm", "-rf", "loop_keystores")
 
     sh("flutter", "build", "aab", "--release") || UI.user_error!("Flutter build failed")
