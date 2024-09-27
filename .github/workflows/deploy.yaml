@@ -1,6 +1,8 @@
 name: "Loop Deploy"
+
 on:
-  workflow_dispatch:
+  tag:
+    - 'v*.release'
 
 env:
   MATCH_PASSWORD: ${{ vars.MATCH_PASSWORD }}
