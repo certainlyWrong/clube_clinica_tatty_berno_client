@@ -49,7 +49,7 @@ jobs:
       run: flutter pub get
 
     - name: Set fastlane_cicd
-      run: echo "${{ vars.FASTLANE_IOS_CICD }}" >> ./ios/store.json
+      run: echo "${{ secrets.FASTLANE_IOS_CICD }}" >> ./ios/store.json
 
     - name: ls ios
       run: ls ios
