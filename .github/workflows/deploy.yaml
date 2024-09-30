@@ -54,6 +54,9 @@ jobs:
     - name: Copy store.json
       run: cp fastlane_tools/store.json ios/store.json
 
+    - name: Copy .env
+      run: cp fastlane_tools/.env ios/fastlane/.env
+
     - name: Validate JSON
       run: |
         python -c 'import json; json.load(open("./ios/store.json"))' && echo "Valid JSON" || echo "Invalid JSON"
