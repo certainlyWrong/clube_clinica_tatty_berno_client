@@ -57,6 +57,12 @@ jobs:
     - name: cat ios/store.json
       run: cat ios/store.json
 
+    - name: Download metadata
+      run: cd ios && fastlane deliver download_metadata -f --api_key_path store.json
+
+    - name: Download screenshots
+      run: cd ios && fastlane deliver download_screenshots -f --api_key_path store.json
+
     - name: Deploy to App Store
       run: cd ios && fastlane release
 
