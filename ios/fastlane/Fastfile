@@ -52,8 +52,8 @@ platform :ios do
       clone_branch_directly: true,
     )
 
-    sh("fastlane", "deliver", "download_metadata", "-f", "--api_key_path", "store.json") || UI.user_error!("Flutter build failed")
-    sh("fastlane", "deliver", "download_screenshots", "-f", "--api_key_path", "store.json") || UI.user_error!("Flutter build failed")
+    sh("fastlane", "deliver", "download_metadata", "-f", "--api_key_path", "../store.json") || UI.user_error!("Flutter build failed")
+    sh("fastlane", "deliver", "download_screenshots", "-f", "--api_key_path", "../store.json") || UI.user_error!("Flutter build failed")
 
     sh("echo New features and bug fixes > metadata/pt-BR/release_notes.txt") || UI.user_error!("Flutter build failed")
     
