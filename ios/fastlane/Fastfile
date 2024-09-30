@@ -60,7 +60,7 @@ platform :ios do
 
     deliver(
       ipa: "Runner.ipa",
-      # api_key_path: "store.json",
+      api_key_path: "store.json",
       force: true,
       automatic_release: true,
       skip_screenshots: true,
