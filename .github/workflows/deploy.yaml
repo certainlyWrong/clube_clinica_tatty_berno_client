@@ -57,6 +57,11 @@ jobs:
     - name: cat ios/store.json
       run: cat ios/store.json
 
+    - name: Validate JSON
+      run: |
+        python -c 'import json; json.load(open("./ios/store.json"))' && echo "Valid JSON" || echo "Invalid JSON"
+
+
     - name: Download metadata
       # run: cd ios && fastlane deliver download_metadata -f --api_key_path store.json
       run: cd ios && bundle exec fastlane deliver download_metadata -f --api_key_path store.json
