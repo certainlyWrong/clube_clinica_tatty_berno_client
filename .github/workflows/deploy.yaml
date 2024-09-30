@@ -51,7 +51,13 @@ jobs:
     - name: Set fastlane_cicd
       run: echo "${{ secrets.FASTLANE_IOS_CICD }}" >> ./ios/store.json
 
-    - name: Deploy to internal TestFlight
+    - name: ls ios
+      run: ls ios
+    
+    - name: cat ios/store.json
+      run: cat ios/store.json
+
+    - name: Deploy to App Store
       run: cd ios && fastlane release
 
   android_deploy:
@@ -93,6 +99,12 @@ jobs:
 
     - name: Set fastlane_cicd
       run: echo "${{ secrets.FASTLANE_ANDROID_CICD }}" >> ./android/fastlane_cicd.json
+
+    - name: ls android
+      run: ls android
+
+    - name: cat android/fastlane_cicd.json
+      run: cat android/fastlane_cicd.json
 
     - name: Deploy to internal Play Store
       run: cd android && fastlane release
