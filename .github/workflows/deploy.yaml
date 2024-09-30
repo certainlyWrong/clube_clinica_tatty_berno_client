@@ -1,8 +1,9 @@
 name: "Loop Deploy"
 
 on:
-  tag:
-    - 'v*.release'
+  push:
+    tags:
+      - 'v*.release'
 
 env:
   MATCH_PASSWORD: ${{ vars.MATCH_PASSWORD }}
