@@ -1,9 +1,8 @@
 name: "Loop Deploy"
 
 on:
-  push:
-    tag:
-      - 'v*.release'
+  tag:
+    - 'v*.release'
 
 env:
   MATCH_PASSWORD: ${{ vars.MATCH_PASSWORD }}
@@ -49,7 +48,7 @@ jobs:
       run: flutter pub get
 
     - name: Set fastlane_cicd
-      run: echo "${{ secrets.FASTLANE_IOS_CICD }}" >> ./ios/store.json
+      run: echo "${{ vars.FASTLANE_IOS_CICD }}" >> ./ios/store.json
 
     - name: ls ios
       run: ls ios
@@ -98,7 +97,7 @@ jobs:
       run: flutter pub get
 
     - name: Set fastlane_cicd
-      run: echo "${{ secrets.FASTLANE_ANDROID_CICD }}" >> ./android/fastlane_cicd.json
+      run: echo "${{ vars.FASTLANE_ANDROID_CICD }}" >> ./android/fastlane_cicd.json
 
     - name: ls android
       run: ls android
