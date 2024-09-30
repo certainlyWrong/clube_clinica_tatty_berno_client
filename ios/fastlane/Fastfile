@@ -62,6 +62,7 @@ platform :ios do
       ipa: "Runner.ipa",
       api_key_path: "store.json",
       force: true,
+      skip_precheck: true,
       automatic_release: true,
       skip_screenshots: true,
       submit_for_review: true,
