@@ -1,12 +1,14 @@
 name: "Loop Deploy"
+
 on:
-  workflow_dispatch:
+  push:
+    tags:
+      - 'v*-release'
 
 env:
   MATCH_PASSWORD: ${{ vars.MATCH_PASSWORD }}
   MATCH_KEYCHAIN_PASSWORD: ${{ vars.MATCH_KEYCHAIN_PASSWORD }}
   FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ vars.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
-  FASTLANE_PASSWORD: ${{ vars.FASTLANE_PASSWORD }}
 
 jobs:
   ios_deploy:
@@ -35,7 +37,7 @@ jobs:
     - name: Setup fastlane
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: "3.3"
+        ruby-version: "3.3.5"
         bundler-cache: true
         working-directory: ios
 
@@ -45,10 +47,26 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
-    - name: Set fastlane_cicd
-      run: echo "${{ secrets.FASTLANE_IOS_CICD }}" >> ./ios/store.json
+    - name: Clone fastlane_tools
+      run: git clone https://github.com/certainlyWrong/fastlane_tools.git
 
-    - name: Deploy to internal TestFlight
+    - name: Copy store.json
+      run: cp fastlane_tools/store.json ios/store.json
+
+    - name: Copy .env
+      run: cp fastlane_tools/.env ios/fastlane/.env
+
+    - name: Validate JSON
+      run: |
+        python -c 'import json; json.load(open("./ios/store.json"))' && echo "Valid JSON" || echo "Invalid JSON"
+
+    - name: Download metadata
+      run: cd ios && bundle exec fastlane deliver download_metadata -f --api_key_path store.json
+
+    - name: Download screenshots
+      run: cd ios && bundle exec fastlane deliver download_screenshots -f --api_key_path store.json
+
+    - name: Deploy to App Store
       run: cd ios && fastlane release
 
   android_deploy:
@@ -88,8 +106,11 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
-    - name: Set fastlane_cicd
-      run: echo "${{ secrets.FASTLANE_ANDROID_CICD }}" >> ./android/fastlane_cicd.json
+    - name: Clone fastlane_tools
+      run: git clone https://github.com/certainlyWrong/fastlane_tools.git
+
+    - name: Copy fastlane_cicd.json
+      run: cp fastlane_tools/fastlane_cicd.json android/fastlane_cicd.json
 
     - name: Deploy to internal Play Store
       run: cd android && fastlane release
