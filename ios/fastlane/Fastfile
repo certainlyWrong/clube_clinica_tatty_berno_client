@@ -52,6 +52,8 @@ platform :ios do
       clone_branch_directly: true,
     )
 
+    get_metadata_and_screenshots
+
     sh("echo New features and bug fixes > metadata/pt-BR/release_notes.txt") || UI.user_error!("Flutter build failed")
     
     sh("flutter", "build", "ios", "--release", "--no-codesign") || UI.user_error!("Flutter build failed")
@@ -81,4 +83,26 @@ platform :ios do
       }
     )
   end
+
+  lane :get_metadata_and_screenshots do |options|
+    require 'spaceship'
+    require 'json'
+    credentials_file = File.read('../store.json')
+    credentials = JSON.parse(credentials_file)
+    Spaceship::ConnectAPI.token = Spaceship::ConnectAPI::Token.create(
+      key_id: credentials['key_id'],
+      issuer_id: credentials['issuer_id'],
+      key: credentials['key']
+    )
+    app = Spaceship::ConnectAPI::App.find("br.com.loopmais")
+    live_version = app.get_live_app_store_version(platform: Spaceship::ConnectAPI::Platform::IOS)
+
+    if live_version
+      puts "Live-version: #{live_version.version_string}"
+      system("fastlane deliver download_metadata -f --app_version '#{live_version.version_string}' --api_key_path ../store.json")
+      system("fastlane deliver download_screenshots --api_key_path ../store.json")
+    else
+      puts "No live version found"
+    end
+  end 
 end
