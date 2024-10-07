@@ -3,7 +3,7 @@ name: "Loop Deploy"
 on:
   push:
     tags:
-      - 'v*-release'
+      - "v*-release"
 
 env:
   MATCH_PASSWORD: ${{ vars.MATCH_PASSWORD }}
@@ -15,103 +15,101 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Setup git
-      run: |
-        git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
+      - name: Setup git
+        run: |
+          git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
 
-    - uses: maxim-lobanov/setup-xcode@v1
-      with:
-        xcode-version: latest-stable
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
 
-    - name: Setup flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.24.3'
-        channel: 'stable'
-        cache: true
-      id: flutter
+      - name: Setup flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.3"
+          channel: "stable"
+        id: flutter
 
-    - name: Setup fastlane
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: "3.3.5"
-        bundler-cache: true
-        working-directory: ios
+      - name: Setup fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.5"
+          bundler-cache: true
+          working-directory: ios
 
-    - name: Install fastlane
-      run: gem install fastlane
+      - name: Install fastlane
+        run: gem install fastlane
 
-    - name: Install dependencies
-      run: flutter pub get
+      - name: Install dependencies
+        run: flutter pub get
 
-    - name: Clone fastlane_tools
-      run: git clone https://github.com/certainlyWrong/fastlane_tools.git
+      - name: Clone fastlane_tools
+        run: git clone https://github.com/certainlyWrong/fastlane_tools.git
 
-    - name: Copy store.json
-      run: cp fastlane_tools/store.json ios/store.json
+      - name: Copy store.json
+        run: cp fastlane_tools/store.json ios/store.json
 
-    - name: Copy .env
-      run: cp fastlane_tools/.env ios/fastlane/.env
+      - name: Copy .env
+        run: cp fastlane_tools/.env ios/fastlane/.env
 
-    - name: Validate JSON
-      run: |
-        python -c 'import json; json.load(open("./ios/store.json"))' && echo "Valid JSON" || echo "Invalid JSON"
+      - name: Validate JSON
+        run: |
+          python -c 'import json; json.load(open("./ios/store.json"))' && echo "Valid JSON" || echo "Invalid JSON"
 
-    - name: Download metadata
-      run: cd ios && bundle exec fastlane deliver download_metadata -f --api_key_path store.json
+      - name: Download metadata
+        run: cd ios && bundle exec fastlane deliver download_metadata -f --api_key_path store.json
 
-    - name: Download screenshots
-      run: cd ios && bundle exec fastlane deliver download_screenshots -f --api_key_path store.json
+      - name: Download screenshots
+        run: cd ios && bundle exec fastlane deliver download_screenshots -f --api_key_path store.json
 
-    - name: Deploy to App Store
-      run: cd ios && fastlane release
+      - name: Deploy to App Store
+        run: cd ios && fastlane release
 
   android_deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Setup git
-      run: |
-        git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
-    
-    - name: Setup flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.24.3'
-        channel: 'stable'
-        cache: true
-      id: flutter
+      - name: Setup git
+        run: |
+          git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
 
-    - name: Setup fastlane
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: "3.3"
-        bundler-cache: true
-        working-directory: ios
+      - name: Setup flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.3"
+          channel: "stable"
+          cache: true
+        id: flutter
 
-    - name: Install fastlane
-      run: gem install fastlane
+      - name: Setup fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+          working-directory: ios
 
-    - name: Setup Java 22
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'temurin'
-        java-version: '22'
+      - name: Install fastlane
+        run: gem install fastlane
 
-    - name: Install dependencies
-      run: flutter pub get
+      - name: Setup Java 22
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "22"
 
-    - name: Clone fastlane_tools
-      run: git clone https://github.com/certainlyWrong/fastlane_tools.git
+      - name: Install dependencies
+        run: flutter pub get
 
-    - name: Copy fastlane_cicd.json
-      run: cp fastlane_tools/fastlane_cicd.json android/fastlane_cicd.json
+      - name: Clone fastlane_tools
+        run: git clone https://github.com/certainlyWrong/fastlane_tools.git
 
-    - name: Deploy to internal Play Store
-      run: cd android && fastlane release
+      - name: Copy fastlane_cicd.json
+        run: cp fastlane_tools/fastlane_cicd.json android/fastlane_cicd.json
 
+      - name: Deploy to internal Play Store
+        run: cd android && fastlane release
