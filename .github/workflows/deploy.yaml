@@ -31,7 +31,6 @@ jobs:
         with:
           flutter-version: "3.24.3"
           channel: "stable"
-          cache: true
         id: flutter
 
       - name: Setup fastlane
@@ -60,7 +59,7 @@ jobs:
         run: |
           python -c 'import json; json.load(open("./ios/store.json"))' && echo "Valid JSON" || echo "Invalid JSON"
 
-      - name: Download metadata
+      - name: Download screenshots
         run: cd ios && bundle exec fastlane deliver download_metadata -f --api_key_path store.json --use_live_version true
 
       - name: Download screenshots

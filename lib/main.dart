@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:looplus_core/looplus_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await loadSingletons();
+
   runApp(
     AppWidget(
       endpoints: LoopCoreEndpoints(
