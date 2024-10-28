@@ -4,7 +4,7 @@ dependencies:
     sdk: flutter
   looplus_core:
     git:
-      ref: v1.6.6
+      ref: v1.6.7
       url: https://github.com/certainlyWrong/looplus_core.git
 description: A new Flutter project.
 dev_dependencies:
@@ -30,4 +30,4 @@ flutter_launcher_icons:
   remove_alpha_ios: true
 name: loop_client
 publish_to: none
-version: 1.6.6+8
+version: 1.6.7+9
