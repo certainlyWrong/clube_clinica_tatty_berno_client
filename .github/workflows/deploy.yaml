@@ -69,7 +69,7 @@ jobs:
   #       run: cd ios && fastlane release
 
   android_deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
