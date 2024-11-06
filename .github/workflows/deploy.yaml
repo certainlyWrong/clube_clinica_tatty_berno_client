@@ -31,6 +31,7 @@ jobs:
   #       uses: subosito/flutter-action@v2
   #       with:
   #         channel: "stable"
+  #         cache: true
   #       id: flutter
 
   #     - name: Setup fastlane
@@ -80,6 +81,7 @@ jobs:
       - name: Setup flutter
         uses: subosito/flutter-action@v2
         with:
+          flutter-version: "3.24.4"
           channel: "stable"
         id: flutter
 
