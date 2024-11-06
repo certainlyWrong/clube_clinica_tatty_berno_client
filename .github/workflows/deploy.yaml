@@ -61,8 +61,8 @@ jobs:
       - name: Download screenshots
         run: cd ios && bundle exec fastlane deliver download_metadata -f --api_key_path store.json --use_live_version true
 
-      - name: Download screenshots
-        run: cd ios && bundle exec fastlane deliver download_screenshots -f --api_key_path store.json --use_live_version true
+      # - name: Download screenshots
+      #   run: cd ios && bundle exec fastlane deliver download_screenshots -f --api_key_path store.json --use_live_version true
 
       - name: Deploy to App Store
         run: cd ios && fastlane release
