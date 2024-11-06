@@ -19,15 +19,6 @@ environment:
   sdk: ^3.5.3
 flutter:
   uses-material-design: true
-flutter_launcher_icons:
-  adaptive_icon_background: assets/icons/background.png
-  adaptive_icon_foreground: assets/icons/icon_android.png
-  android: launcher_icon
-  image_path_android: assets/icons/icon_android.png
-  image_path_ios: assets/icons/icon_ios.png
-  ios: true
-  min_sdk_android: 16
-  remove_alpha_ios: true
 name: loop_client
 publish_to: none
 version: 1.6.7+97
