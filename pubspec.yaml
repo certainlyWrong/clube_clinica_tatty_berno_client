@@ -19,6 +19,6 @@ environment:
   sdk: ^3.5.3
 flutter:
   uses-material-design: true
-name: loop_client
+name: loopmais
 publish_to: none
-version: 1.6.10+98
+version: 1.6.10+11
