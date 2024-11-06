@@ -109,11 +109,5 @@ jobs:
       - name: Copy fastlane_cicd.json
         run: cp fastlane_tools/fastlane_cicd.json android/fastlane_cicd.json
 
-      - name: Gradlew clean
-        run: cd android && ./gradlew clean
-
-      - name: Flutter clean
-        run: flutter clean && flutter pub get
-
       - name: Deploy to internal Play Store
         run: cd android && fastlane release
