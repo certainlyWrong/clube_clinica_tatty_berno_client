@@ -12,61 +12,61 @@ env:
   FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ vars.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
 
 jobs:
-  # ios_deploy:
-  #   runs-on: macos-latest
+  ios_deploy:
+    runs-on: macos-latest
 
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-  #     - name: Setup git
-  #       run: |
-  #         git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
+      - name: Setup git
+        run: |
+          git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
 
-  #     - uses: maxim-lobanov/setup-xcode@v1
-  #       with:
-  #         xcode-version: latest-stable
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
 
-  #     - name: Setup flutter
-  #       uses: subosito/flutter-action@v2
-  #       with:
-  #         channel: "stable"
-  #         cache: true
-  #       id: flutter
+      - name: Setup flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          cache: true
+        id: flutter
 
-  #     - name: Setup fastlane
-  #       uses: ruby/setup-ruby@v1
-  #       with:
-  #         ruby-version: "3.3"
-  #         bundler-cache: true
+      - name: Setup fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
 
-  #     - name: Install fastlane
-  #       uses: tashi-iu/setup-fastlane@v1
+      - name: Install fastlane
+        uses: tashi-iu/setup-fastlane@v1
 
-  #     - name: Install dependencies
-  #       run: flutter pub get
+      - name: Install dependencies
+        run: flutter pub get
 
-  #     - name: Clone fastlane_tools
-  #       run: git clone https://github.com/certainlyWrong/fastlane_tools.git
+      - name: Clone fastlane_tools
+        run: git clone https://github.com/certainlyWrong/fastlane_tools.git
 
-  #     - name: Copy store.json
-  #       run: cp fastlane_tools/store.json ios/store.json
+      - name: Copy store.json
+        run: cp fastlane_tools/store.json ios/store.json
 
-  #     - name: Copy .env
-  #       run: cp fastlane_tools/.env ios/fastlane/.env
+      - name: Copy .env
+        run: cp fastlane_tools/.env ios/fastlane/.env
 
-  #     - name: Validate JSON
-  #       run: |
-  #         python -c 'import json; json.load(open("./ios/store.json"))' && echo "Valid JSON" || echo "Invalid JSON"
+      - name: Validate JSON
+        run: |
+          python -c 'import json; json.load(open("./ios/store.json"))' && echo "Valid JSON" || echo "Invalid JSON"
 
-  #     - name: Download screenshots
-  #       run: cd ios && bundle exec fastlane deliver download_metadata -f --api_key_path store.json --use_live_version true
+      - name: Download screenshots
+        run: cd ios && bundle exec fastlane deliver download_metadata -f --api_key_path store.json --use_live_version true
 
-  #     # - name: Download screenshots
-  #     #   run: cd ios && bundle exec fastlane deliver download_screenshots -f --api_key_path store.json --use_live_version true
+      # - name: Download screenshots
+      #   run: cd ios && bundle exec fastlane deliver download_screenshots -f --api_key_path store.json --use_live_version true
 
-  #     - name: Deploy to App Store
-  #       run: cd ios && fastlane release
+      - name: Deploy to App Store
+        run: cd ios && fastlane release
 
   android_deploy:
     runs-on: ubuntu-latest
