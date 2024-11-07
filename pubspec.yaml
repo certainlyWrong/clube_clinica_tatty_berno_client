@@ -21,4 +21,4 @@ flutter:
   uses-material-design: true
 name: loop_client
 publish_to: none
-version: 1.6.11+100
+version: 1.6.12+101
