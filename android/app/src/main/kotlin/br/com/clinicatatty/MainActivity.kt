@@ -1,4 +1,4 @@
-package br.com.loopmais
+package br.com.clinicatatty
 
 import io.flutter.embedding.android.FlutterActivity
 
