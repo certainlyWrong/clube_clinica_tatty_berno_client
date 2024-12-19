@@ -4,7 +4,7 @@ storage_mode("git")
 
 type("development") # The default type, can be: appstore, adhoc, enterprise or development
 
-app_identifier("br.com.loopmais") # The bundle identifier of your app
+app_identifier("br.com.clinicatatty") # The bundle identifier of your app
 username("adrianorodesousa@gmail.com") # Your Apple Developer Portal username
 
 # For all available options run `fastlane match --help`
