@@ -8,13 +8,12 @@ dependencies:
       url: https://github.com/certainlyWrong/looplus_core.git
 description: A new Flutter project.
 dev_dependencies:
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: ^0.14.2
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
   integration_test:
     sdk: flutter
-  patrol: ^3.11.0
 environment:
   sdk: ^3.5.3
 flutter:
